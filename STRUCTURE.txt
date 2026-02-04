@@ -1,0 +1,45 @@
+Salem Recipe Book - Professional Structure
+==========================================
+
+📂 COMPLETE FILE STRUCTURE:
+├── index.html              Single entry point (clean HTML)
+├── css/
+│   └── styles.css         ONE stylesheet for everything
+├── js/
+│   └── app.js            ONE JavaScript file (all logic)
+├── data/
+│   └── recipes.json      ALL 13 recipes (easily expand to 45+)
+├── assets/
+│   └── images/           Place recipe images here
+├── README.md             Complete documentation
+└── .gitignore           For version control
+
+📊 CURRENT STATUS:
+✓ 13 recipes loaded and working
+✓ Centralized architecture (1 CSS, 1 JS, 1 JSON)
+✓ Ready for Netlify deployment
+✓ Fully scalable to 45+ recipes
+
+🎯 TO ADD RECIPES:
+1. Edit data/recipes.json
+2. Copy existing recipe template
+3. Change: id, title, ingredients, instructions
+4. Save & refresh browser
+5. Done!
+
+🎨 FEATURES:
+✓ Search & filter recipes
+✓ Auto-grouped by category
+✓ Servings scaler with fractions
+✓ Responsive design
+✓ Print-friendly
+✓ Cultural info AI integration
+✓ Collapsible sections
+✓ Beautiful typography
+
+📦 DEPLOYMENT:
+- Drag entire folder to Netlify
+- No build process needed
+- Works immediately
+
+For detailed instructions, see README.md

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salem Recipe Book - Authentic recipes from Central Asia, Caucasus, Mediterranean, and beyond. Traditional family recipes by Saule & Karly.">
+  <meta name="keywords" content="Central Asian recipes, Turkish recipes, Russian recipes, authentic cooking, family recipes">
+  <meta name="author" content="Saule Dairabayeva & Karly D. Croci">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Salem — Recipes from Central Asia & Beyond">
+  <meta property="og:description" content="Traditional family recipes from Central Asia, Mediterranean, and beyond">
+  <meta property="og:type" content="website">
+  
+  <title>Salem — Recipes from Central Asia & Beyond</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- Centralized Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand" onclick="goToPage('cover')" role="button" tabindex="0" aria-label="Go to cover page">
+        <svg class="wheat-svg" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <ellipse cx="14" cy="6" rx="3" ry="5" fill="#d4a574"/>
+          <ellipse cx="8" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(-30 8 9)"/>
+          <ellipse cx="20" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(30 20 9)"/>
+          <ellipse cx="5" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(-45 5 15)"/>
+          <ellipse cx="23" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(45 23 15)"/>
+          <line x1="14" y1="11" x2="14" y2="27" stroke="#8b6914" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h1>Salem</h1>
+          <p>Central Asian &amp; Beyond</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <button class="btn-header btn-print" onclick="window.print()" aria-label="Print page">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/>
+          </svg>
+          Print
+        </button>
+        <button class="btn-header btn-nav" onclick="toggleNav()" aria-label="Toggle recipe navigation">
+          <svg id="nav-icon-menu" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <svg id="nav-icon-x" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+          Recipes
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       CHAPTER NAVIGATION
+       ═══════════════════════════════════════════════ -->
+  <nav class="book-nav" role="navigation" aria-label="Book chapters">
+    <div class="book-nav-inner">
+      <button class="book-tab active" data-page="cover">Cover</button>
+      <button class="book-tab" data-page="intro">Introduction</button>
+      <button class="book-tab" data-page="recipes">Recipes</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       COVER PAGE
+       ═══════════════════════════════════════════════ -->
+  <section class="page active" id="page-cover" role="region" aria-label="Cover page">
+    <div class="cover">
+      <div class="cover-inner">
+        <div class="cover-rule" aria-hidden="true"></div>
+        <p class="cover-subtitle">Recipe Book</p>
+        <h2 class="cover-title">Salem</h2>
+        <p class="cover-name">Recipes from Central Asia &amp; Beyond</p>
+        <div class="cover-authors">
+          <strong>Saule Dairabayeva</strong> &amp; <strong>Karly D. Croci</strong><br>
+          Two sisters from Kazakhstan
+        </div>
+        <p class="cover-date">Est. 10.11.2017</p>
+        <button class="cover-cta" onclick="goToPage('intro')">
+          Open the Book
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       INTRODUCTION PAGE
+       ═══════════════════════════════════════════════ -->
+  <section class="page" id="page-intro" role="region" aria-label="Introduction">
+    <div class="intro-wrap">
+      <div class="intro-hero">
+        <div class="cover-rule" aria-hidden="true"></div>
+        <h2>Introduction</h2>
+        <p>Chapter 0 — The story behind Salem</p>
+      </div>
+
+      <div class="dedication">
+        <p>This book is dedicated to our mom, aunts, our friends and their moms — to everyone who has treated us to a wonderful meal, leaving us in awe and always grateful.</p>
+      </div>
+
+      <div class="intro-body">
+        <p>Central Asia—and the wider Eurasian steppe—was never just about caravans hauling sacks of grain. It was about songs, spices, and ways of living quietly slipping across borders, blending into one another like wind over grass.</p>
+
+        <p>“Salem” means hello, peace, the sound of a door opening. It’s the word that echoed through our childhood courtyard in Satpayev, a mining town in Kazakhstan where the apartment blocks were modest but the Eid tables were not. Our neighbors behaved like minor oligarchs of hospitality, stacking platters until the table resembled a small, edible stock exchange.</p>
+
+        <p>We are Saule and Karly, two sisters who grew up in that world, then packed those flavors into our carry-on luggage and followed a familiar immigrant storyline: arrive in America, fall in love with the grocery aisles—and gain “arrival weight.” The American food system is a marvel of efficiency, with ultra-processed meals delivering maximum calories per minute of cooking time. From a jeans-button perspective, it’s less marvelous. And so Salem began as a quiet rebellion in our own kitchen.</p>
+
+        <p>Recreating our childhood dishes became a small research project in applied globalization. Tomatoes here were sweeter, flour stronger, lamb more elusive—and more expensive. We swapped lamb for affordable cuts of beef, coaxed flavor from supermarket produce, and learned which frozen shortcuts could be trusted (phyllo dough, yes; anonymous breaded cutlets, absolutely not). Over time, we built a portfolio of recipes that use American ingredients yet still carry the rhythm and structure of Central Asian, Caucasian, Korean, and Mediterranean cooking.</p>
+
+        <p>Recipes, in a way, are cultural algorithms. They compress centuries of trial and error into a few lines of instruction: sauté this, salt that, wait until the onions smell like your grandmother’s hallway. They encode history—traces of feast and famine, migration and exchange, empire and survival.</p>
+
+        <p>Practically speaking, we also know you’re busy. This book is built for people who want to eat well without quitting their day jobs or their weeknight routines. Many recipes start from a clever “base” that can split into multiple dishes with the addition of herbs, grains, or sauces. Think of it as batch cooking with a passport and a sense of humor.</p>
+
+        <p>Salem is dedicated to our mother, our aunts, our friends, and their mothers—the women who never let a guest leave hungry and sincerely believed one more spoonful might fix your life. It’s also for anyone who has stood in front of the fridge at 7 p.m., hovering between a bag of something frozen and the suspicion that there must be a better trade between time, health, and pleasure.</p>
+
+        <p>So: Salem. Come into our kitchen. There will be stories. There will be dough. There will be a legendary baklava from Karly’s mother-in-law—a family recipe once promoted to miracle status. More importantly, there will be a way to feed yourself and the people you love that feels new and global, yet stubbornly, comfortingly familiar.</p>
+      </div>
+
+      <div class="intro-tip">
+        <p><strong>The trick:</strong> Prepare some batches that can be used in 2–3 different recipes, with different types of spices and preparation techniques, to create entirely different flavors. The book contains various degrees of difficulty and is suitable for both beginners and experienced gourmet chefs.</p>
+      </div>
+
+      <div class="intro-nav-hint">
+        <p>Ready to start cooking?</p>
+        <button onclick="goToPage('recipes')">Browse the Recipes →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       RECIPES PAGE (Dynamically Rendered)
+       ═══════════════════════════════════════════════ -->
+  <section class="page" id="page-recipes" role="region" aria-label="Recipes">
+    <div class="recipes-wrap">
+      <div id="titleCard"></div>
+      <div class="meta-row" id="metaRow"></div>
+      <div class="nutri-bar" id="nutriBar"></div>
+      <div class="section-card" id="secIngredients"></div>
+
+      <div class="culture-banner" id="cultureBanner">
+        <div class="culture-head">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5dcc3" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>Explore the Tradition</span>
+        </div>
+        <button class="btn-culture" id="btnCulture" onclick="fetchCulture()">
+          Discover Cultural Background
+        </button>
+        <div class="culture-fact" id="cultureFact"><p></p></div>
+      </div>
+
+      <div class="section-card" id="secInstructions"></div>
+      <div class="section-card" id="secTips"></div>
+
+      <footer class="footer">
+        <div class="footer-brand">
+          <svg class="wheat-svg" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <ellipse cx="14" cy="6" rx="3" ry="5" fill="#d4a574"/>
+            <ellipse cx="8" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(-30 8 9)"/>
+            <ellipse cx="20" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(30 20 9)"/>
+            <ellipse cx="5" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(-45 5 15)"/>
+            <ellipse cx="23" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(45 23 15)"/>
+            <line x1="14" y1="11" x2="14" y2="27" stroke="#8b6914" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>From the family cookbook of Saule &amp; Karly</span>
+          <svg class="wheat-svg" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <ellipse cx="14" cy="6" rx="3" ry="5" fill="#d4a574"/>
+            <ellipse cx="8" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(-30 8 9)"/>
+            <ellipse cx="20" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(30 20 9)"/>
+            <ellipse cx="5" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(-45 5 15)"/>
+            <ellipse cx="23" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(45 23 15)"/>
+            <line x1="14" y1="11" x2="14" y2="27" stroke="#8b6914" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="footer-sub">Salem — Recipes from Central Asia and Beyond</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       RECIPE NAVIGATION SIDEBAR
+       ═══════════════════════════════════════════════ -->
+  <div class="overlay" id="overlay" onclick="toggleNav()" role="presentation"></div>
+  <nav class="nav-panel" id="navPanel" role="navigation" aria-label="Recipe navigation">
+    <div class="nav-head">
+      <p>Recipes</p>
+      <div class="nav-search-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input 
+          class="nav-search" 
+          type="search" 
+          placeholder="Search recipes…" 
+          oninput="filterNav(this.value)"
+          aria-label="Search recipes"
+        />
+      </div>
+    </div>
+    <div class="nav-body" id="navBody"></div>
+  </nav>
+
+  <!-- Centralized JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>

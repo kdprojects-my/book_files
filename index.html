@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Salem — Recipes from Central Asia & Beyond</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --cream:#faf6f0; --cream-dark:#f0e6d6; --card:#fff;
+  --bark:#5c3d2e; --bark-deep:#3b2420;
+  --text:#3b2f2f; --text-soft:#6b5a4e; --text-muted:#9a8678;
+  --accent:#c9733a; --accent-lg:#d4845a; --accent-pale:#faf0ea;
+  --border:#efe8e0; --border-light:#f2ebe4;
+  --green-bg:#e8f5e9; --green-txt:#2e7d32;
+  --shadow-sm:0 2px 10px rgba(90,60,40,.07);
+  --shadow-md:0 2px 18px rgba(90,60,40,.08);
+  --shadow-lg:0 8px 32px rgba(60,30,10,.18);
+  --r-card:14px; --r-sm:8px;
+}
+
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:linear-gradient(180deg,var(--cream),var(--cream-dark));color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ═══════════════════════════════════════════════
+   HEADER (sticky)
+   ═══════════════════════════════════════════════ */
+.header{background:linear-gradient(135deg,var(--bark),var(--bark-deep));padding:15px 22px;position:sticky;top:0;z-index:30;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='.045'%3E%3Cpath d='M26 26c-2-2-3-5-1-8s5-4 8-2 3 5 1 8-5 4-8 2z'/%3E%3C/g%3E%3C/svg%3E")}
+.header-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;max-width:740px;margin:0 auto}
+.header-brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+.header-brand h1{font-family:'Playfair Display',serif;color:#f5dcc3;font-size:21px;font-weight:600;letter-spacing:1px}
+.header-brand p{color:#c9a882;font-size:9.5px;letter-spacing:2.8px;text-transform:uppercase;margin-top:1px}
+.header-actions{display:flex;gap:7px}
+.btn-header{display:flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:12.5px;cursor:pointer;transition:background .2s}
+.btn-print{background:rgba(255,255,255,.1);color:#f5dcc3;border:1px solid rgba(255,255,255,.2)}
+.btn-print:hover{background:rgba(255,255,255,.18)}
+.btn-nav{background:var(--accent);color:#fff}
+.btn-nav:hover{background:var(--accent-lg)}
+
+/* ═══════════════════════════════════════════════
+   BOOK-NAV (horizontal chapter tabs)
+   ═══════════════════════════════════════════════ */
+.book-nav{background:var(--bark-deep);position:sticky;top:52px;z-index:29;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.book-nav::-webkit-scrollbar{height:3px}
+.book-nav::-webkit-scrollbar-track{background:transparent}
+.book-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
+.book-nav-inner{display:flex;max-width:740px;margin:0 auto;padding:0 18px}
+.book-tab{flex-shrink:0;padding:9px 18px;color:#c9a882;font-size:12px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.book-tab:hover{color:#fff}
+.book-tab.active{color:#fff;border-bottom-color:var(--accent)}
+
+/* ═══════════════════════════════════════════════
+   PAGES (each .page is a full screen section)
+   ═══════════════════════════════════════════════ */
+.page{display:none;animation:pageIn .38s ease both}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════════════════════════════
+   COVER PAGE
+   ═══════════════════════════════════════════════ */
+.cover{min-height:calc(100vh - 90px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px 40px;position:relative}
+.cover::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9733a' fill-opacity='.04'%3E%3Cpath d='M50 10c-2 4-7 5-11 3s-5-7-3-11 7-5 11-3 5 7 3 11z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.cover-inner{position:relative;z-index:1;max-width:520px}
+.cover-rule{width:56px;height:3px;background:var(--accent);margin:0 auto 28px;border-radius:2px}
+.cover-subtitle{font-size:11px;color:var(--accent);letter-spacing:3.5px;text-transform:uppercase;margin-bottom:12px}
+.cover-title{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--bark-deep);line-height:1.1;margin-bottom:6px}
+.cover-name{font-family:'Playfair Display',serif;font-size:18px;color:var(--bark);font-style:italic;margin-bottom:30px}
+.cover-authors{font-size:13px;color:var(--text-muted);line-height:1.8}
+.cover-authors strong{color:var(--bark-deep);font-weight:500}
+.cover-date{margin-top:22px;font-size:12px;color:var(--text-muted);letter-spacing:1px}
+.cover-cta{margin-top:40px;display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--accent);color:#fff;border:none;border-radius:24px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;transition:background .2s,transform .15s}
+.cover-cta:hover{background:var(--accent-lg);transform:translateY(-1px)}
+
+/* ═══════════════════════════════════════════════
+   INTRO PAGE
+   ═══════════════════════════════════════════════ */
+.intro-wrap{max-width:680px;margin:0 auto;padding:44px 22px 70px}
+.intro-hero{text-align:center;margin-bottom:42px}
+.intro-hero .cover-rule{margin-bottom:18px}
+.intro-hero h2{font-family:'Playfair Display',serif;font-size:36px;font-weight:600;color:var(--bark-deep)}
+.intro-hero p{font-size:13px;color:var(--text-muted);letter-spacing:.6px;margin-top:6px;font-style:italic}
+.dedication{background:var(--card);border-radius:var(--r-card);box-shadow:var(--shadow-md);padding:26px 28px;margin-bottom:28px;border-left:4px solid var(--accent);position:relative}
+.dedication::before{content:'"';font-family:'Playfair Display',serif;font-size:58px;color:var(--accent);opacity:.2;position:absolute;top:-8px;left:16px;line-height:1}
+.dedication p{font-size:15px;color:var(--bark-deep);font-style:italic;line-height:1.7;position:relative;z-index:1}
+.intro-body p{font-size:15px;color:var(--text-soft);line-height:1.85;margin-bottom:18px}
+.intro-body p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:48px;float:left;line-height:.85;margin-right:8px;margin-top:4px;color:var(--accent);font-weight:700}
+.intro-body em{color:var(--bark-deep);font-style:italic}
+.intro-body .highlight{background:var(--accent-pale);padding:2px 6px;border-radius:3px;color:var(--bark-deep)}
+.intro-tip{background:linear-gradient(135deg,var(--bark),#7a5038);border-radius:var(--r-card);padding:22px 24px;margin-top:30px;margin-bottom:10px}
+.intro-tip p{color:#f0dcc8;font-size:14.5px;line-height:1.7;margin:0}
+.intro-tip strong{color:#fff}
+.intro-nav-hint{text-align:center;margin-top:36px}
+.intro-nav-hint p{font-size:13px;color:var(--text-muted);margin-bottom:10px}
+.intro-nav-hint button{padding:10px 24px;background:var(--accent);color:#fff;border:none;border-radius:22px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;transition:background .2s}
+.intro-nav-hint button:hover{background:var(--accent-lg)}
+
+/* ═══════════════════════════════════════════════
+   RECIPES PAGE  (reuses prior styles)
+   ═══════════════════════════════════════════════ */
+.recipes-wrap{max-width:680px;margin:0 auto;padding:28px 20px 60px}
+
+/* Title card */
+.title-card{background:var(--card);border-radius:var(--r-card);padding:24px 26px 20px;box-shadow:var(--shadow-md);border-top:4px solid var(--accent);margin-bottom:18px}
+.title-card-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px}
+.title-card h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:var(--bark-deep);letter-spacing:.3px}
+.title-card .cat{font-size:13px;color:var(--accent);font-style:italic;margin-top:4px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;padding:3px 10px;border-radius:12px;background:var(--green-bg);color:var(--green-txt);letter-spacing:.4px}
+.story-row{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
+.story-icon{font-size:20px;flex-shrink:0;margin-top:-2px}
+.story-text{font-size:14px;color:var(--text-soft);line-height:1.6;font-style:italic}
+
+/* Meta */
+.meta-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.meta-card{background:var(--card);border-radius:10px;padding:15px 10px;text-align:center;box-shadow:var(--shadow-sm)}
+.meta-icon{margin-bottom:6px}
+.meta-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+.meta-value{font-size:15px;font-weight:500;color:var(--bark-deep);margin-top:3px}
+
+/* Nutrition */
+.nutri-bar{background:var(--card);border-radius:10px;padding:14px 18px;box-shadow:var(--shadow-sm);display:flex;justify-content:space-around;margin-bottom:18px}
+.nutri-label{font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;text-align:center;line-height:1.35}
+.nutri-label span{display:block;font-size:9.5px;opacity:.6}
+.nutri-item{text-align:center}
+.nutri-val{font-size:18px;font-weight:600;color:var(--bark-deep)}
+.nutri-sub{font-size:10px;color:var(--text-muted);margin-top:2px}
+
+/* Collapsible sections */
+.section-card{background:var(--card);border-radius:var(--r-card);box-shadow:var(--shadow-md);margin-bottom:18px;overflow:hidden}
+.section-header{display:flex;width:100%;align-items:center;justify-content:space-between;padding:15px 22px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;border-bottom:1px solid var(--border);transition:background .15s}
+.section-header:hover{background:var(--accent-pale)}
+.sec-title{font-size:15.5px;font-weight:500;color:var(--bark-deep)}
+.chevron{transition:transform .25s}
+.chevron.closed{transform:rotate(180deg)}
+.section-body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1)}
+.section-body.open{max-height:2400px}
+.section-inner{padding:12px 22px 20px}
+
+/* Servings */
+.servings-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;padding:9px 16px;background:var(--accent-pale);border-radius:var(--r-sm)}
+.btn-srv{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--card);font-size:18px;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s,color .15s;line-height:1}
+.btn-srv:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.srv-num{font-size:16px;font-weight:600;color:var(--bark-deep);min-width:22px;text-align:center}
+.srv-label{font-size:13px;color:var(--text-muted)}
+
+/* Ingredient rows */
+.ing-row{display:flex;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--border-light);font-size:14.5px}
+.ing-row:last-child{border-bottom:none}
+.ing-dot{color:var(--accent);margin-right:8px;font-size:15px}
+.ing-amt{font-weight:600;color:var(--bark-deep)}
+
+/* Instructions */
+.inst-row{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--border-light)}
+.inst-row:last-child{border-bottom:none}
+.inst-num{min-width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;flex-shrink:0}
+.inst-title{font-size:14.5px;font-weight:600;color:var(--bark-deep)}
+.inst-text{font-size:14px;color:var(--text-soft);line-height:1.55;margin-top:3px}
+
+/* Tips */
+.tip-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border-light)}
+.tip-row:last-child{border-bottom:none}
+.tip-emoji{font-size:18px;flex-shrink:0}
+.tip-text{font-size:14px;color:var(--text-soft);line-height:1.5}
+
+/* Cultural banner */
+.culture-banner{background:linear-gradient(135deg,var(--bark),#7a5038);border-radius:var(--r-card);padding:20px 22px;margin-bottom:18px;box-shadow:var(--shadow-lg)}
+.culture-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.culture-head span{color:#f5dcc3;font-size:15px;font-weight:500}
+.btn-culture{padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:6px;color:#f5dcc3;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-culture:hover{background:rgba(255,255,255,.2)}
+.culture-fact{background:rgba(255,255,255,.1);border-radius:var(--r-sm);padding:12px 14px;display:none}
+.culture-fact.visible{display:block}
+.culture-fact p{color:#f0dcc8;font-size:14px;line-height:1.6;margin:0}
+.culture-fact .loading{font-style:italic;color:#c9a882}
+
+/* Footer */
+.footer{text-align:center;padding-top:18px;border-top:1px solid var(--border)}
+.footer-brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:5px}
+.footer-brand span{font-size:13px;color:var(--text-muted);font-style:italic}
+.footer-sub{font-size:10.5px;color:#b8a498;letter-spacing:1.8px;text-transform:uppercase}
+
+/* ═══════════════════════════════════════════════
+   SLIDE-OUT NAV (recipe picker)
+   ═══════════════════════════════════════════════ */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:auto}
+.nav-panel{position:fixed;top:0;right:-320px;width:300px;max-width:90vw;height:100%;background:#fff;z-index:50;box-shadow:var(--shadow-lg);transition:right .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.nav-panel.open{right:0}
+.nav-head{background:var(--bark);padding:16px}
+.nav-head p{color:#f5dcc3;font-size:13px;font-weight:500;margin-bottom:10px}
+.nav-search-wrap{position:relative}
+.nav-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none}
+.nav-search{width:100%;padding:9px 12px 9px 32px;border:none;border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none}
+.nav-search:focus{box-shadow:0 0 0 2px var(--accent)}
+.nav-body{flex:1;overflow-y:auto;padding:8px}
+.nav-cat-label{font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:1.6px;font-weight:500;padding:8px 10px 4px}
+.nav-item{display:block;width:100%;text-align:left;padding:9px 12px;border:none;border-radius:7px;background:transparent;color:var(--text);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;transition:background .15s}
+.nav-item:hover{background:var(--accent-pale)}
+.nav-item.active{background:var(--accent);color:#fff}
+.nav-item .nav-sub{display:block;font-size:11px;margin-top:1px;opacity:.6}
+.nav-item.active .nav-sub{color:rgba(255,255,255,.75);opacity:1}
+
+/* ═══════════════════════════════════════════════
+   WHEAT SVG helper
+   ═══════════════════════════════════════════════ */
+.wheat-svg{display:inline-block;width:26px;height:26px}
+
+/* ═══════════════════════════════════════════════
+   PRINT
+   ═══════════════════════════════════════════════ */
+@media print{
+  .header-actions,.overlay,.nav-panel,.btn-culture,.book-nav,.cover-cta,
+  .section-header .chevron,.servings-bar,.intro-nav-hint{display:none!important}
+  .page{display:block!important;animation:none!important}
+  .section-body{max-height:none!important}
+  .section-header{pointer-events:none}
+  body{background:#fff!important}
+  .title-card,.meta-card,.nutri-bar,.section-card,.culture-banner,.dedication{box-shadow:none!important}
+  .culture-banner{background:var(--accent-pale)!important}
+  .culture-fact{display:block!important}
+  .culture-fact p,.culture-head span{color:var(--bark-deep)!important}
+  .cover{min-height:auto;padding:80px 24px 60px}
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media(max-width:480px){
+  .cover-title{font-size:40px}
+  .meta-row{gap:6px}
+  .meta-card{padding:12px 6px}
+  .meta-value{font-size:13px}
+  .title-card h2{font-size:22px}
+  .intro-hero h2{font-size:28px}
+  .intro-body p,.dedication p{font-size:14px}
+  .recipes-wrap,.intro-wrap{padding-left:15px;padding-right:15px}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── STICKY HEADER ─── -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-brand" onclick="goToPage('cover')">
+      <svg class="wheat-svg" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="6" rx="3" ry="5" fill="#d4a574"/><ellipse cx="8" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(-30 8 9)"/><ellipse cx="20" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(30 20 9)"/><ellipse cx="5" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(-45 5 15)"/><ellipse cx="23" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(45 23 15)"/><line x1="14" y1="11" x2="14" y2="27" stroke="#8b6914" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div><h1>Salem</h1><p>Central Asian &amp; Beyond</p></div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-header btn-print" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        Print
+      </button>
+      <button class="btn-header btn-nav" onclick="toggleNav()">
+        <svg id="nav-icon-menu" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="nav-icon-x" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Recipes
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ─── CHAPTER TABS ─── -->
+<nav class="book-nav">
+  <div class="book-nav-inner">
+    <button class="book-tab active" data-page="cover">Cover</button>
+    <button class="book-tab" data-page="intro">Introduction</button>
+    <button class="book-tab" data-page="recipes">Recipes</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     COVER PAGE
+     ═══════════════════════════════════════════════ -->
+<section class="page active" id="page-cover">
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-rule"></div>
+      <p class="cover-subtitle">Recipe Book</p>
+      <h1 class="cover-title">Salem</h1>
+      <p class="cover-name">Recipes from Central Asia &amp; Beyond</p>
+      <div class="cover-authors">
+        <strong>Saule Dairabayeva</strong> &amp; <strong>Karly D. Croci</strong><br/>
+        Two sisters from Kazakhstan
+      </div>
+      <p class="cover-date">Est. 10.11.2017</p>
+      <button class="cover-cta" onclick="goToPage('intro')">
+        Open the Book
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     INTRODUCTION PAGE
+     ═══════════════════════════════════════════════ -->
+<section class="page" id="page-intro">
+  <div class="intro-wrap">
+    <div class="intro-hero">
+      <div class="cover-rule"></div>
+      <h2>Introduction</h2>
+      <p>The story behind Salem</p>
+    </div>
+
+    <!-- Dedication -->
+    <div class="dedication">
+      <p>This book is dedicated to our mom, aunts, our friends and their moms — to everyone who has treated us to a wonderful meal, leaving us in awe and always grateful.</p>
+    </div>
+
+    <!-- Body paragraphs -->
+    <div class="intro-body">
+      <p>Central Asia—and the wider Eurasian steppe—was never just about caravans hauling sacks of grain. It was about songs, spices, and ways of living quietly slipping across borders, blending into one another like wind over grass.</p>
+
+      <p>“Salem” means hello, peace, the sound of a door opening. It’s the word that echoed through our childhood courtyard in Satpayev, a mining town in Kazakhstan where the apartment blocks were modest but the Eid tables were not. Our neighbors behaved like minor oligarchs of hospitality, stacking platters until the table resembled a small, edible stock exchange.</p>
+
+      <p>We are Saule and Karly, two sisters who grew up in that world, then packed those flavors into our carry-on luggage and followed a familiar immigrant storyline: arrive in America, fall in love with the grocery aisles—and gain “arrival weight.” The American food system is a marvel of efficiency, with ultra-processed meals delivering maximum calories per minute of cooking time. From a jeans-button perspective, it’s less marvelous. And so Salem began as a quiet rebellion in our own kitchen.</p>
+
+      <p>Recreating our childhood dishes became a small research project in applied globalization. Tomatoes here were sweeter, flour stronger, lamb more elusive—and more expensive. We swapped lamb for affordable cuts of beef, coaxed flavor from supermarket produce, and learned which frozen shortcuts could be trusted (phyllo dough, yes; anonymous breaded cutlets, absolutely not). Over time, we built a portfolio of recipes that use American ingredients yet still carry the rhythm and structure of Central Asian, Caucasian, Korean, and Mediterranean cooking.</p>
+
+      <p>Recipes, in a way, are cultural algorithms. They compress centuries of trial and error into a few lines of instruction: sauté this, salt that, wait until the onions smell like your grandmother’s hallway. They encode history—traces of feast and famine, migration and exchange, empire and survival.</p>
+
+      <p>Practically speaking, we also know you’re busy. This book is built for people who want to eat well without quitting their day jobs or their weeknight routines. Many recipes start from a clever “base” that can split into multiple dishes with the addition of herbs, grains, or sauces. Think of it as batch cooking with a passport and a sense of humor.</p>
+
+      <p>Salem is dedicated to our mother, our aunts, our friends, and their mothers—the women who never let a guest leave hungry and sincerely believed one more spoonful might fix your life. It’s also for anyone who has stood in front of the fridge at 7 p.m., hovering between a bag of something frozen and the suspicion that there must be a better trade between time, health, and pleasure.</p>
+
+      <p>So: Salem. Come into our kitchen. There will be stories. There will be dough. There will be a legendary baklava from Karly’s mother-in-law—a family recipe once promoted to miracle status. More importantly, there will be a way to feed yourself and the people you love that feels new and global, yet stubbornly, comfortingly familiar.</p>
+    </div>
+
+    <!-- Highlighted tip box -->
+    <div class="intro-tip">
+      <p><strong>The trick:</strong> Prepare some batches that can be used in 2–3 different recipes, with different types of spices and preparation techniques, to create entirely different flavors. The book contains various degrees of difficulty and is suitable for both beginners and experienced gourmet chefs.</p>
+    </div>
+
+    <!-- Navigate to recipes -->
+    <div class="intro-nav-hint">
+      <p>Ready to start cooking?</p>
+      <button onclick="goToPage('recipes')">Browse the Recipes →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     RECIPES PAGE
+     ═══════════════════════════════════════════════ -->
+<section class="page" id="page-recipes">
+  <div class="recipes-wrap">
+    <div id="titleCard"></div>
+    <div class="meta-row" id="metaRow"></div>
+    <div class="nutri-bar" id="nutriBar"></div>
+    <div class="section-card" id="secIngredients"></div>
+
+    <div class="culture-banner" id="cultureBanner">
+      <div class="culture-head">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5dcc3" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>Explore the Tradition</span>
+      </div>
+      <button class="btn-culture" id="btnCulture" onclick="fetchCulture()">Discover Cultural Background</button>
+      <div class="culture-fact" id="cultureFact"><p></p></div>
+    </div>
+
+    <div class="section-card" id="secInstructions"></div>
+    <div class="section-card" id="secTips"></div>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <svg class="wheat-svg" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="6" rx="3" ry="5" fill="#d4a574"/><ellipse cx="8" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(-30 8 9)"/><ellipse cx="20" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(30 20 9)"/><ellipse cx="5" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(-45 5 15)"/><ellipse cx="23" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(45 23 15)"/><line x1="14" y1="11" x2="14" y2="27" stroke="#8b6914" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>From the family cookbook of Saule &amp; Karly</span>
+        <svg class="wheat-svg" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="6" rx="3" ry="5" fill="#d4a574"/><ellipse cx="8" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(-30 8 9)"/><ellipse cx="20" cy="9" rx="3" ry="5" fill="#c49460" transform="rotate(30 20 9)"/><ellipse cx="5" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(-45 5 15)"/><ellipse cx="23" cy="15" rx="2.5" ry="4.5" fill="#b8845a" transform="rotate(45 23 15)"/><line x1="14" y1="11" x2="14" y2="27" stroke="#8b6914" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <p class="footer-sub">Salem — Recipes from Central Asia and Beyond</p>
+    </footer>
+  </div>
+</section>
+
+<!-- ─── RECIPE-PICKER SLIDE-OUT ─── -->
+<div class="overlay" id="overlay" onclick="toggleNav()"></div>
+<nav class="nav-panel" id="navPanel">
+  <div class="nav-head">
+    <p>Recipes</p>
+    <div class="nav-search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="nav-search" type="text" placeholder="Search recipes…" oninput="filterNav(this.value)"/>
+    </div>
+  </div>
+  <div class="nav-body" id="navBody"></div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPT
+     ═══════════════════════════════════════════════ -->
+<script>
+const RECIPES=[
+{id:0,title:"Eggplant 'Tyeshin Yazyk'",category:"Appetizers & Side Dishes",story:"An easy recipe that works best with Chinese eggplants. The name translates to 'mother-in-law's tongue' in Russian.",prepTime:"10 min",cookTime:"60 min",difficulty:"Easy",cuisine:"Russian / Mediterranean",baseServings:4,dietary:["Gluten-Free"],nutrition:{calories:185,protein:"3g",carbs:"14g",fat:"13g"},ingredients:[{name:"large Chinese eggplants (1 lb)",amount:3,unit:""},{name:"kosher salt",amount:1,unit:"tsp"},{name:"black pepper",amount:1,unit:"pinch"},{name:"olive oil",amount:4,unit:"Tbsp"},{name:"campari tomatoes (1 lb)",amount:5,unit:""},{name:"mayonnaise (or Greek yogurt)",amount:3,unit:"Tbsp"},{name:"garlic cloves, minced",amount:2,unit:""}],instructions:[{step:1,title:"Prep eggplants",text:"Cut off stems and slice eggplants into 0.5 inch rounds. Lay on baking sheet."},{step:2,title:"Season",text:"Brush with olive oil, sprinkle generously with salt and pepper."},{step:3,title:"Roast",text:"Roast for 50–60 minutes in preheated oven at 400°F."},{step:4,title:"Make sauce",text:"Meanwhile, mince garlic and mix with mayonnaise or Greek yogurt."},{step:5,title:"Assemble",text:"Spread thin layer of mayo sauce over roasted eggplants."},{step:6,title:"Top",text:"Slice tomatoes and assemble on top of eggplants."}],tips:["For egg-free option, use Greek yogurt with salt instead of mayo","Can be made in advance and refrigerated for a couple of days","Garnish with parsley and cilantro"]},
+{id:1,title:"Roasted Eggplant with Peppers & Zucchini",category:"Appetizers & Side Dishes",story:"A colorful Greek-inspired medley of roasted vegetables topped with feta and balsamic glaze.",prepTime:"10 min",cookTime:"40 min",difficulty:"Easy",cuisine:"Greek",baseServings:4,dietary:["Gluten-Free","Vegetarian"],nutrition:{calories:220,protein:"8g",carbs:"16g",fat:"15g"},ingredients:[{name:"eggplants (preferably Chinese)",amount:2,unit:""},{name:"bell pepper",amount:1,unit:""},{name:"medium zucchini",amount:1,unit:""},{name:"salt",amount:0.5,unit:"tsp"},{name:"black pepper",amount:0.5,unit:"tsp"},{name:"olive oil",amount:4,unit:"Tbsp"},{name:"crumbled feta cheese",amount:0.5,unit:"lb"},{name:"balsamic glaze",amount:2,unit:"Tbsp"},{name:"chopped parsley and cilantro",amount:0.25,unit:"cup"}],instructions:[{step:1,title:"Slice vegetables",text:"Cut eggplants, bell pepper, and zucchini into 0.5 inch slices."},{step:2,title:"Season",text:"Thoroughly brush with olive oil, sprinkle with salt and black pepper."},{step:3,title:"Roast",text:"Roast for 40 minutes in oven at 400°F."},{step:4,title:"Cool and dress",text:"Remove from oven and let cool. Add crumbled feta, drizzle with balsamic glaze, top with herbs."}],tips:["Vegetables can be roasted in advance and kept refrigerated","Alternative: sauté roasted vegetables in homemade tomato sauce (Spanish sofrito)","Use fresh herbs for best flavor"]},
+{id:2,title:"Desyatka (Ten Vegetables)",category:"Appetizers & Side Dishes",story:"We used to can this dish for days starting early September — sometimes 50 cans ready to last through the long Kazakh winter. The name means 'ten' because the recipe counts 10 of each vegetable type.",prepTime:"15 min",cookTime:"50 min",difficulty:"Easy",cuisine:"Kazakh",baseServings:10,dietary:["Vegan","Gluten-Free"],nutrition:{calories:145,protein:"3g",carbs:"21g",fat:"7g"},ingredients:[{name:"eggplants (preferably Chinese)",amount:10,unit:""},{name:"red bell peppers",amount:10,unit:""},{name:"ripe medium tomatoes",amount:10,unit:""},{name:"medium onions",amount:10,unit:""},{name:"garlic cloves",amount:10,unit:""},{name:"salt",amount:1.5,unit:"tsp"},{name:"black pepper",amount:0.5,unit:"tsp"},{name:"sugar",amount:0.75,unit:"tsp"},{name:"vinegar",amount:1,unit:"tsp"},{name:"olive oil",amount:0.5,unit:"cup"},{name:"water",amount:0.33,unit:"cup"}],instructions:[{step:1,title:"Prep vegetables",text:"Wash all vegetables and cut into large wedges. Place in a pot."},{step:2,title:"Add seasonings",text:"Add salt, sugar, pepper, vinegar, olive oil, and water."},{step:3,title:"Sauté",text:"Cook for 50 minutes or longer on very low heat until eggplants are soft."},{step:4,title:"Enjoy",text:"Serve warm or at room temperature."}],tips:["Perfect for meal prep — keeps well refrigerated","Adjust quantities proportionally for smaller batches","Great as a side with grilled meats or fish"]},
+{id:3,title:"Eggplant with Turmeric",category:"Appetizers & Side Dishes",story:"A fusion of Mediterranean and Indian flavors. Works best with Chinese eggplant because of its softness.",prepTime:"10 min",cookTime:"20 min",difficulty:"Easy",cuisine:"Mediterranean / Indian Fusion",baseServings:3,dietary:["Vegan","Gluten-Free"],nutrition:{calories:125,protein:"2g",carbs:"12g",fat:"9g"},ingredients:[{name:"eggplants (preferably Chinese)",amount:2,unit:""},{name:"kosher salt",amount:1,unit:"tsp"},{name:"chili pepper",amount:1,unit:"tsp"},{name:"turmeric",amount:2,unit:"Tbsp"},{name:"olive oil",amount:4,unit:"Tbsp"}],instructions:[{step:1,title:"Slice",text:"Cut eggplants into 0.5 inch slices and lay on baking sheet."},{step:2,title:"Season",text:"Brush with olive oil. Add salt, chili pepper, and turmeric."},{step:3,title:"Bake",text:"Bake in preheated oven at 400°F for 20 minutes."}],tips:["Can be cooked in advance and refrigerated for a couple of days","Beautiful golden color from turmeric","Pairs well with yogurt sauce"]},
+{id:4,title:"Roasted Tomatoes (Cypriot Recipe)",category:"Appetizers & Side Dishes",story:"Karly picked up this recipe from a hotel restaurant in Nicosia where it was served every morning — so warm and satisfying. It ideally complements breakfast omelets or can be served as an appetizer.",prepTime:"5 min",cookTime:"15 min",difficulty:"Easy",cuisine:"Cypriot",baseServings:4,dietary:["Gluten-Free","Vegetarian"],nutrition:{calories:195,protein:"7g",carbs:"9g",fat:"15g"},ingredients:[{name:"campari tomatoes",amount:1,unit:"lb"},{name:"feta cheese",amount:0.33,unit:"lb"},{name:"salt",amount:0.33,unit:"tsp"},{name:"black pepper",amount:0.33,unit:"tsp"},{name:"dried oregano",amount:1,unit:"tsp"},{name:"olive oil",amount:5,unit:"Tbsp"}],instructions:[{step:1,title:"Prep tomatoes",text:"Wash tomatoes and place in baking pan."},{step:2,title:"Season",text:"Sprinkle with salt, pepper, and oregano. Add rosemary sprigs if desired."},{step:3,title:"Add cheese",text:"Add crumbled feta cheese and drizzle with olive oil."},{step:4,title:"Bake",text:"Bake for 15 minutes or until soft in preheated oven at 400°F."}],tips:["Feta can be replaced with Blue cheese and Paneer (or Cypriot Haloumi)","Tastes better when served with fresh arugula and pressed garlic","Perfect for breakfast alongside eggs"]},
+{id:5,title:"Turkish Green Beans (Fasulye)",category:"Appetizers & Side Dishes",story:"A staple in Turkish cuisine that Karly's mother-in-law used to make for every family gathering. Saule spent two years learning authentic Turkish dishes from her.",prepTime:"10 min",cookTime:"45 min",difficulty:"Easy",cuisine:"Turkish",baseServings:4,dietary:["Vegan","Gluten-Free"],nutrition:{calories:145,protein:"3g",carbs:"18g",fat:"8g"},ingredients:[{name:"fresh green beans",amount:1,unit:"lb"},{name:"large onion, sliced",amount:1,unit:""},{name:"garlic cloves, sliced",amount:2,unit:""},{name:"large tomatoes",amount:2,unit:""},{name:"sugar",amount:1,unit:"Tbsp"},{name:"extra virgin olive oil",amount:0.33,unit:"cup"},{name:"water",amount:0.5,unit:"cup"},{name:"kosher salt",amount:0.5,unit:"Tbsp"}],instructions:[{step:1,title:"Prepare green beans",text:"Clean and trim fresh green beans on both ends. Place in a wide pot or pan."},{step:2,title:"Add onions",text:"Slice onion into rings and place on top of green beans."},{step:3,title:"Prepare tomatoes",text:"Make an X-shaped cut on the bottom of each tomato. Place on top of onions."},{step:4,title:"Season",text:"Add sugar, salt, and olive oil. Pour in water."},{step:5,title:"Initial cooking",text:"Bring to boil and cook 3–5 minutes on medium-high heat."},{step:6,title:"Simmer",text:"Lower heat and cook 40 minutes until beans are tender."}],tips:["Use a wide pan for best results","Traditionally served cold, but can be enjoyed warm","Tomatoes break down naturally, creating a light sauce"]},
+{id:6,title:"Beets with Potatoes, Tomatoes & Celery Root",category:"Appetizers & Side Dishes",story:"A hymn to our love of roasted beets. The sweetness of beets is balanced by the flavor of potatoes and celery roots.",prepTime:"20 min",cookTime:"60 min",difficulty:"Medium",cuisine:"Eastern European",baseServings:5,dietary:["Vegan","Gluten-Free"],nutrition:{calories:175,protein:"4g",carbs:"28g",fat:"6g"},ingredients:[{name:"roasted beets, skin removed",amount:1,unit:"lb"},{name:"celery roots, skin removed",amount:1.5,unit:""},{name:"golden potatoes",amount:1,unit:"lb"},{name:"large tomatoes",amount:2,unit:""},{name:"large onion",amount:1,unit:""},{name:"olive oil",amount:0.25,unit:"cup"},{name:"salt",amount:1,unit:"tsp"},{name:"black pepper",amount:0.25,unit:"tsp"}],instructions:[{step:1,title:"Prepare base",text:"Sauté sliced onions and chopped tomatoes in olive oil until soft."},{step:2,title:"Slice vegetables",text:"Slice roasted beets, potatoes, and celery roots into thin ¼ inch slices."},{step:3,title:"Layer",text:"Place tomato base in large baking sheet. Arrange sliced vegetables on top, alternating them."},{step:4,title:"Season and bake",text:"Add salt and black pepper. Bake at 390°F for 60 minutes or until potatoes and celery are soft."}],tips:["Beets need to be roasted in advance — keep refrigerated up to 1 week","Beautiful presentation when vegetables are alternated","Serve warm as a side or at room temperature"]},
+{id:7,title:"Roasted Eggplant, Peppers & Zucchini (No Cheese)",category:"Appetizers & Side Dishes",story:"Simple roasted vegetables without the cheese topping — perfect for meal prep or as a vegan side dish.",prepTime:"10 min",cookTime:"45 min",difficulty:"Easy",cuisine:"Mediterranean",baseServings:4,dietary:["Vegan","Gluten-Free"],nutrition:{calories:135,protein:"3g",carbs:"15g",fat:"8g"},ingredients:[{name:"eggplants (preferably Chinese)",amount:2,unit:""},{name:"bell pepper",amount:1,unit:""},{name:"medium zucchini",amount:1,unit:""},{name:"salt",amount:0.5,unit:"tsp"},{name:"black pepper",amount:0.5,unit:"tsp"},{name:"olive oil",amount:4,unit:"Tbsp"}],instructions:[{step:1,title:"Slice",text:"Cut eggplants, bell pepper, and zucchini into 0.5 inch slices."},{step:2,title:"Season",text:"Brush thoroughly with olive oil, sprinkle with salt and pepper."},{step:3,title:"Roast",text:"Roast for 40 minutes in oven at 400°F."},{step:4,title:"Serve",text:"Remove and let cool. Serve as is or with your choice of dressing."}],tips:["Can be roasted in advance and refrigerated","Try adding to tomato sauce for a Spanish sofrito variation","Leftovers make great sandwich fillings"]},
+{id:8,title:"Borscht",category:"Soups",story:"A classic comfort soup. The best we tried was in Brooklyn at 'Ocean' restaurant on a cold January day.",prepTime:"30 min",cookTime:"2 hrs",difficulty:"Medium",cuisine:"Russian / Ukrainian",baseServings:8,dietary:["Gluten-Free"],nutrition:{calories:285,protein:"22g",carbs:"28g",fat:"9g"},ingredients:[{name:"beef meat and ribs",amount:1,unit:"lb"},{name:"water",amount:16,unit:"cups"},{name:"medium potatoes, cubed",amount:2,unit:""},{name:"leeks, sliced",amount:2,unit:""},{name:"white cabbage, sliced",amount:1,unit:"lb"},{name:"olive oil",amount:3,unit:"Tbsp"},{name:"onion, chopped",amount:1,unit:""},{name:"large tomatoes, cubed",amount:3,unit:""},{name:"tomato paste",amount:2,unit:"Tbsp"},{name:"medium beets, chopped",amount:3,unit:""},{name:"carrots, chopped",amount:3,unit:""},{name:"sugar",amount:1,unit:"Tbsp"},{name:"apple cider vinegar",amount:1,unit:"Tbsp"},{name:"salt",amount:2,unit:"Tbsp"},{name:"bay leaves",amount:2,unit:""},{name:"sour cream for serving",amount:0.5,unit:"cup"}],instructions:[{step:1,title:"Make broth",text:"Cook meat and ribs in water for 1.5 hours. Skim foam."},{step:2,title:"Add vegetables",text:"Add potatoes, leeks, cabbage. Cook 20–30 minutes."},{step:3,title:"Prepare zazharka",text:"Sauté onions in olive oil. Add tomatoes and paste. Cook 10–15 minutes."},{step:4,title:"Cook beets",text:"Add beets and carrots to zazharka with broth. Cook 20–30 minutes. Add vinegar and sugar."},{step:5,title:"Combine",text:"Add zazharka to pot with bay leaves. Cook 5–10 minutes."},{step:6,title:"Serve",text:"Top with sour cream and dill."}],tips:["Use pressure cooker on slow setting for 10–15 hours to save time","Keep heat low so vegetables retain color","Shred vegetables in food processor"]},
+{id:9,title:"Russian Vinaigrette",category:"Salads",story:"A Nepalese colleague was amused by how much beet he consumed in one week visiting Kazakhstan!",prepTime:"15 min",cookTime:"0 min",difficulty:"Easy",cuisine:"Russian",baseServings:4,dietary:["Vegan","Gluten-Free"],nutrition:{calories:165,protein:"4g",carbs:"22g",fat:"7g"},ingredients:[{name:"roasted beets, cubed",amount:1,unit:"lb"},{name:"kosher baby dill pickles",amount:0.5,unit:"cup"},{name:"frozen green peas, thawed",amount:0.5,unit:"cup"},{name:"red onion, diced",amount:0.5,unit:""},{name:"extra virgin olive oil",amount:3,unit:"Tbsp"},{name:"fresh dill or parsley",amount:0.25,unit:"cup"}],instructions:[{step:1,title:"Prep",text:"Cube beets and pickles. Thaw peas. Dice onion and herbs."},{step:2,title:"Combine",text:"Mix all ingredients."},{step:3,title:"Season",text:"Drizzle olive oil, add salt and pepper."}],tips:["Roasted beets taste better than boiled","Roast in advance — keeps 4–5 days"]},
+{id:10,title:"Manti (Steamed Dumplings)",category:"Main Dishes",story:"Central Asian dumplings with butternut squash and meat. Making manti is often a family affair.",prepTime:"45 min",cookTime:"40 min",difficulty:"Medium",cuisine:"Central Asian",baseServings:6,dietary:[],nutrition:{calories:380,protein:"18g",carbs:"42g",fat:"15g"},ingredients:[{name:"all-purpose flour",amount:3,unit:"cups"},{name:"eggs",amount:2,unit:""},{name:"warm water",amount:0.75,unit:"cup"},{name:"salt",amount:1,unit:"tsp"},{name:"ground beef",amount:1,unit:"lb"},{name:"onion, minced",amount:1,unit:"large"},{name:"butternut squash, grated",amount:1.5,unit:"cups"},{name:"olive oil",amount:2,unit:"Tbsp"},{name:"black pepper",amount:0.5,unit:"tsp"}],instructions:[{step:1,title:"Make dough",text:"Mix flour, egg, water, salt. Knead smooth. Rest 30 minutes."},{step:2,title:"Prepare filling",text:"Mix beef, onion, squash, egg, oil, salt, pepper."},{step:3,title:"Roll and cut",text:"Roll dough thin. Cut into 3×3 inch squares."},{step:4,title:"Fill and fold",text:"Add 1 Tbsp filling to center. Fold corners diagonally, pinch together."},{step:5,title:"Steam",text:"Boil water in steamer. Steam manti 40 minutes without touching."}],tips:["Lukewarm water makes softer dough","Don't let manti touch in steamer","Serve with garlic yogurt and red pepper oil"]},
+{id:11,title:"Pelmeni (Russian Dumplings)",category:"Main Dishes",story:"T.Lyuda prepares 600 pieces before every cold season as family tradition. They freeze beautifully!",prepTime:"60 min",cookTime:"20 min",difficulty:"Medium",cuisine:"Russian",baseServings:6,dietary:[],nutrition:{calories:340,protein:"16g",carbs:"38g",fat:"13g"},ingredients:[{name:"all-purpose flour",amount:3,unit:"cups"},{name:"eggs",amount:2,unit:""},{name:"warm water",amount:0.75,unit:"cup"},{name:"salt",amount:0.5,unit:"tsp"},{name:"ground beef",amount:1,unit:"lb"},{name:"onion, minced",amount:1,unit:"large"},{name:"olive oil",amount:2,unit:"Tbsp"},{name:"butter",amount:3,unit:"Tbsp"}],instructions:[{step:1,title:"Make dough",text:"Mix flour, eggs, water, salt. Knead smooth. Rest 30 minutes."},{step:2,title:"Prepare filling",text:"Mix beef, onion, oil, salt, pepper."},{step:3,title:"Shape",text:"Roll thin, cut 2.5-inch squares. Add filling, fold diagonally, join corners."},{step:4,title:"Cook",text:"Boil water with onion, butter, salt. Add pelmeni. Cook 20 minutes."}],tips:["Freeze uncooked on tray, then bag once frozen","Cook from frozen","Serve with sour cream or vinegar"]},
+{id:12,title:"Kotlety (Russian Meatballs)",category:"Main Dishes",story:"Pan-fried then baked for incredible juiciness without fat. A Soviet comfort food staple.",prepTime:"20 min",cookTime:"35 min",difficulty:"Easy",cuisine:"Russian",baseServings:6,dietary:[],nutrition:{calories:295,protein:"24g",carbs:"12g",fat:"17g"},ingredients:[{name:"ground beef",amount:2.2,unit:"lbs"},{name:"onions, chopped",amount:2,unit:""},{name:"eggs",amount:2,unit:""},{name:"olive oil",amount:3,unit:"Tbsp"},{name:"salt",amount:1.5,unit:"tsp"},{name:"black pepper",amount:0.5,unit:"tsp"},{name:"flour for coating",amount:0.5,unit:"cup"}],instructions:[{step:1,title:"Mix",text:"Combine beef, eggs, oil, salt, pepper, onion. Rest 10 minutes."},{step:2,title:"Form",text:"Shape into oval patties 3 inches long."},{step:3,title:"Fry",text:"Coat in flour. Fry 2 minutes per side for crust."},{step:4,title:"Bake",text:"Transfer to pan. Add water, cover. Bake 320°F for 25–30 minutes."}],tips:["Two-step cooking: fry for crust, bake for juiciness","Serve with mashed potatoes and pickles"]}
+];
+let current=0,servings=RECIPES[0].baseServings;const FRACS={0.25:'¼',0.33:'⅓',0.5:'½',0.67:'⅔',0.75:'¾'};function fmtAmt(raw){const sc=raw*(servings/RECIPES[current].baseServings);if(sc%1===0)return sc.toString();const whole=Math.floor(sc),frac=sc-whole;let closest=0.5;Object.keys(FRACS).forEach(k=>{if(Math.abs(k-frac)<Math.abs(closest-frac))closest=k});if(Math.abs(closest-frac)<0.06)return whole>0?whole+FRACS[closest]:FRACS[closest];return sc.toFixed(2).replace(/\.?0+$/,'')}function goToPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.book-tab').forEach(t=>t.classList.toggle('active',t.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='recipes')renderRecipe()}document.querySelectorAll('.book-tab').forEach(t=>t.addEventListener('click',()=>goToPage(t.dataset.page)));function buildNav(filter){filter=(filter||'').toLowerCase();const groups={};RECIPES.forEach(r=>{if(filter&&!r.title.toLowerCase().includes(filter)&&!r.category.toLowerCase().includes(filter))return;(groups[r.category]=groups[r.category]||[]).push(r)});document.getElementById('navBody').innerHTML=Object.entries(groups).map(([cat,recs])=>'<p class="nav-cat-label">'+cat+'</p>'+recs.map(r=>'<button class="nav-item'+(r.id===current?' active':'')+'" onclick="selectRecipe('+r.id+')">'+r.title+'<span class="nav-sub">'+r.cuisine+' &bull; '+r.difficulty+'</span></button>').join('')).join('')}function toggleNav(){const open=document.getElementById('navPanel').classList.toggle('open');document.getElementById('overlay').classList.toggle('open',open);document.getElementById('nav-icon-menu').style.display=open?'none':'block';document.getElementById('nav-icon-x').style.display=open?'block':'none';if(open)buildNav()}function filterNav(v){buildNav(v)}function selectRecipe(id){current=id;servings=RECIPES[id].baseServings;goToPage('recipes');toggleNav()}function toggleSection(id){const body=document.getElementById(id+'_body');const chev=document.getElementById(id+'_chev');const wasOpen=body.classList.contains('open');body.classList.toggle('open',!wasOpen);chev.classList.toggle('closed',wasOpen)}function changeServings(d){servings=Math.max(1,servings+d);renderIngredients();renderNutri()}function fetchCulture(){const r=RECIPES[current];const fact=document.getElementById('cultureFact');const btn=document.getElementById('btnCulture');fact.classList.add('visible');fact.innerHTML='<p class="loading">Loading…</p>';btn.style.display='none';fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,messages:[{role:'user',content:'Share a brief cultural fact about the dish "'+r.title+'" from '+r.cuisine+' cuisine. Keep it to 2-3 sentences.'}]})}).then(res=>res.json()).then(data=>{const t=(data.content||[]).find(b=>b.type==='text');fact.innerHTML='<p>'+(t?t.text:'This dish has deep cultural roots.')+'</p>'}).catch(()=>{fact.innerHTML='<p>This beloved dish represents generations of culinary tradition.</p>'})}const clockIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9733a" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';const layersIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9733a" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>';const usersIcon='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>';const chevSvg='<svg class="chevron" id="ID_chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9733a" stroke-width="2.2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';function renderNutri(){const n=RECIPES[current].nutrition;document.getElementById('nutriBar').innerHTML='<div class="nutri-label">Nutrition<span>(per serving)</span></div>'+[['Calories',n.calories],['Protein',n.protein],['Carbs',n.carbs],['Fat',n.fat]].map(([l,v])=>'<div class="nutri-item"><div class="nutri-val">'+v+'</div><div class="nutri-sub">'+l+'</div></div>').join('')}function renderIngredients(){const r=RECIPES[current];document.getElementById('secIngredients').innerHTML='<button class="section-header" onclick="toggleSection(\'ing\')"><span class="sec-title">🥄 Ingredients</span>'+chevSvg.replace(/ID/g,'ing')+'</button>'+'<div class="section-body open" id="ing_body"><div class="section-inner">'+'<div class="servings-bar"><span class="srv-icon" style="color:var(--accent)">'+usersIcon+'</span><button class="btn-srv" onclick="changeServings(-1)">−</button><span class="srv-num">'+servings+'</span><button class="btn-srv" onclick="changeServings(1)">+</button><span class="srv-label">servings</span></div>'+r.ingredients.map(i=>'<div class="ing-row"><span class="ing-dot">•</span><span><span class="ing-amt">'+fmtAmt(i.amount)+' '+i.unit+'</span> '+i.name+'</span></div>').join('')+'</div></div>'}function renderRecipe(){const r=RECIPES[current];document.getElementById('titleCard').innerHTML='<div class="title-card-top"><div><h2>'+r.title+'</h2><p class="cat">'+r.category+'</p></div><div class="tags">'+r.dietary.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div></div>'+'<div class="story-row"><span class="story-icon">📖</span><p class="story-text">'+r.story+'</p></div>';document.getElementById('metaRow').innerHTML='<div class="meta-card"><div class="meta-icon">'+clockIcon+'</div><div class="meta-label">Prep</div><div class="meta-value">'+r.prepTime+'</div></div>'+'<div class="meta-card"><div class="meta-icon">'+clockIcon+'</div><div class="meta-label">Cook</div><div class="meta-value">'+r.cookTime+'</div></div>'+'<div class="meta-card"><div class="meta-icon">'+layersIcon+'</div><div class="meta-label">Difficulty</div><div class="meta-value">'+r.difficulty+'</div></div>';renderNutri();renderIngredients();document.getElementById('btnCulture').style.display='block';document.getElementById('cultureFact').classList.remove('visible');document.getElementById('cultureFact').innerHTML='<p></p>';document.getElementById('secInstructions').innerHTML='<button class="section-header" onclick="toggleSection(\'inst\')"><span class="sec-title">📝 Instructions</span>'+chevSvg.replace(/ID/g,'inst')+'</button>'+'<div class="section-body open" id="inst_body"><div class="section-inner">'+r.instructions.map(ins=>'<div class="inst-row"><div class="inst-num">'+ins.step+'</div><div><div class="inst-title">'+ins.title+'</div><div class="inst-text">'+ins.text+'</div></div></div>').join('')+'</div></div>';document.getElementById('secTips').innerHTML='<button class="section-header" onclick="toggleSection(\'tips\')"><span class="sec-title">✨ Kitchen Secrets</span>'+chevSvg.replace(/ID/g,'tips')+'</button>'+'<div class="section-body open" id="tips_body"><div class="section-inner">'+r.tips.map(t=>'<div class="tip-row"><span class="tip-emoji">✨</span><p class="tip-text">'+t+'</p></div>').join('')+'</div></div>';buildNav()}renderRecipe();
+</script>
+</body>
+</html>
