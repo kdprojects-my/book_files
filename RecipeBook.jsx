@@ -305,7 +305,7 @@ const RecipeBook = () => {
             <WheatSVG />
             <div>
               <h1 style={{ margin: 0, color: '#f5dcc3', fontSize: '22px', fontWeight: 'normal', letterSpacing: '1px' }}>Salem</h1>
-              <p style={{ margin: 0, color: '#c9a882', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase' }}>Central Asian & Beyond</p>
+              <p style={{ margin: 0, color: '#c9a882', fontSize: '11px', letterSpacing: '2.5px', textTransform: 'uppercase' }}>Recipes from Central Asia & Beyond</p>
             </div>
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
