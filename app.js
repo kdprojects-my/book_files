@@ -255,6 +255,7 @@ function renderRecipe(id) {
 function renderTitleCard(recipe) {
   document.getElementById('titleCard').innerHTML = `
     <div class="title-card">
+      ${recipe.image ? `<img src="${recipe.image}" alt="${recipe.title}" class="recipe-image" />` : ''}
       <div class="title-card-top">
         <div>
           <h2>${recipe.title}</h2>
